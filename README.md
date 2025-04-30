@@ -1,2 +1,3 @@
-1. Sukuriu json faila ir xml failus, juos užpildau duomenimis iš pavyzdžio, taip pat nukopijavau pateikta pavizdyje koda – json failo deserializavimui i c# objekta
+1. (1-2-3 uzduotis) Sukuriu json faila ir xml failus, juos užpildau duomenimis iš pavyzdžio, taip pat nukopijavau pateikta pavizdyje koda – json failo deserializavimui i c# objekta
    
+2. Antroje versijoje sukuriau daugiau vartotoju ir isskyriau ju tipus (users, admins) pridedant usertype lauka, sukuriau tevine ir vaikines klases (administratorius ir useris paveldi bendrus duomenis is BaseUser), sukuriau antra json faila (admins), panaudojau foreach cikla, kad deserializuociau duomenis is json failu i c# objektus.  

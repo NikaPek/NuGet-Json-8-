@@ -4,29 +4,68 @@ using System.IO;
 
 class Program
 {
-   
-    //aprasyti klase atitinkancia json struktura
-    public class User
+    //apsirasau enumeratoriu, kad lengviau atskirti vartotojo tipa
+    public enum UserType
+    {
+        User,
+        Administrator
+    }
+    
+    //user klase pervadinama i BaseUser, ji yra tevine
+    public class BaseUser
     {
         public string Name { get; set; }
         public int Age { get; set; }
         public string City { get; set; }
     }
 
+    // sukuriu dvi vaikines klases: administrator, user
+    public class Administrator : BaseUser
+    {
+        public UserType UserType { get; set; }
+        
+    }
+
+    public class User : BaseUser
+    {
+        public UserType UserType { get; set; }
+    }
+    
     static void Main(string[] args)
     {
-        //nuoroda i json fila
-        string filePath = $"{Environment.CurrentDirectory}\\user.json";
+        //nuorodos i json filus
+        string usersFilePath = $"{Environment.CurrentDirectory}\\users.json";
+        string adminsFilePath = $"{Environment.CurrentDirectory}\\admins.json";
         
-        //perskaito json failo duomenis
-        string jsonResponse = File.ReadAllText(filePath);
+        //perskaito json failu duomenis
+        string usersJsonResponse = File.ReadAllText(usersFilePath);
+        string adminsJsonResponse = File.ReadAllText(usersFilePath);
         
-        //json failas deserializuojamas i C# objekta
-        User user = JsonConvert.DeserializeObject<User>(jsonResponse);
+        //json failai deserializuojami i C# objektus
+        List<User> users = JsonConvert.DeserializeObject<List<User>>(usersJsonResponse);
+        List<Administrator> admins = JsonConvert.DeserializeObject<List<Administrator>>(adminsJsonResponse);
         
-        //atspauzdinama vartotojo(user) informacija
-        Console.WriteLine($"Name: {user.Name}");
-        Console.WriteLine($"Age: {user.Age}");
-        Console.WriteLine($"City: {user.City}");
+        //atspauzdinama vartotoju (users, admins) informacija
+       
+        foreach (User u in users)
+        {
+            Console.WriteLine($"Name: {u.Name}");
+            Console.WriteLine($"Age: {u.Age}");
+            Console.WriteLine($"City: {u.City}");
+            Console.WriteLine($"City: {u.UserType}");
+            Console.WriteLine();
+            
+        }
+        
+        foreach (Administrator u in admins)
+        {
+            Console.WriteLine($"Name: {u.Name}");
+            Console.WriteLine($"Age: {u.Age}");
+            Console.WriteLine($"City: {u.City}");
+            Console.WriteLine($"City: {u.UserType}");
+            Console.WriteLine();
+            
+        }
+        
     }
 }
